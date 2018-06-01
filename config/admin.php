@@ -82,7 +82,7 @@ return [
     'database' => [
 
         // Database connection for following tables.
-        'connection' => 'jp_det_tw',
+        'connection' => '',
 
         // User tables and model.
         'users_table' => 'admin_users',
