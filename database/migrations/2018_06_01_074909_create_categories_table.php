@@ -34,7 +34,9 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        $table->dropIndex('parent_id__sort_num');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropIndex('parent_id__sort_num');
+        });
         Schema::dropIfExists('categories');
     }
 }
