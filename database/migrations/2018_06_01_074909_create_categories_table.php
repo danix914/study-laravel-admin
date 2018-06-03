@@ -20,8 +20,9 @@ class CreateCategoriesTable extends Migration
             $table->string('image_path', 255)->nullable();
             $table->unsignedTinyInteger('sort_num')->default(0);
             $table->unsignedInteger('parent_id')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->unsignedInteger('created_at');
+            $table->unsignedInteger('updated_at');
+            $table->unsignedInteger('deleted_at')->nullable();
 
             $table->index(['parent_id', 'sort_num'], 'parent_id__sort_num');
         });
