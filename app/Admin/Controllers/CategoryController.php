@@ -74,6 +74,10 @@ class CategoryController extends Controller
     protected function grid()
     {
         return Admin::grid(Category::class, function (Grid $grid) {
+            $grid->disablePagination();
+            $grid->disableFilter();
+            $grid->disableExport();
+            $grid->disableRowSelector();
 
             $grid->id('ID')->sortable();
 
