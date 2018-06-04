@@ -15,6 +15,8 @@ class CategoryController extends Controller
 {
     use ModelForm;
 
+    const ADMIN_TITLE = 'Category';
+
     /**
      * Index interface.
      *
@@ -24,8 +26,8 @@ class CategoryController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header(self::ADMIN_TITLE);
+            $content->description('list');
 
             $content->body($this->grid());
         });
@@ -41,8 +43,8 @@ class CategoryController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header(self::ADMIN_TITLE);
+            $content->description('edit');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +59,8 @@ class CategoryController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header(self::ADMIN_TITLE);
+            $content->description('create');
 
             $content->body($this->form());
         });
