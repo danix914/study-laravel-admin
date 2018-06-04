@@ -79,10 +79,18 @@ class CategoryController extends Controller
             $grid->disableExport();
             $grid->disableRowSelector();
 
+            $grid->image_path('Image')->image('', 100);
             $grid->id('ID')->sortable();
-
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->parent_id('隸屬大分類')->sortable()->display(function ($pid) {
+                return $pid ? Category::find($pid)->title : '無';
+            });
+            $grid->column('title', '分類名稱'); // laravel-admin Grid defined 'title' method, call 'column' method to replace 'title'
+            $grid->created_at('建立時間')->display(function ($ts) {
+                return date("Y-m-d H:i:s", $ts);
+            });
+            $grid->updated_at('最後更新時間')->display(function ($ts) {
+                return date("Y-m-d H:i:s", $ts);
+            });
         });
     }
 
