@@ -92,6 +92,10 @@ class CategoryController extends Controller
         return Admin::form(Category::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->display('parent_id', 'parent ID');
+            $form->text('title');
+            $form->text('description');
+            $form->image('image_path');
 
             //$form->display('created_at', 'Created At');
             //$form->display('updated_at', 'Updated At');
