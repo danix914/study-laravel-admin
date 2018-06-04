@@ -89,10 +89,16 @@ class CategoryController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Category::class, function (Form $form) {
+        // get associative array from Illuminate Collection
+        $parent_ids_opt = Category::query()
+            ->select(['id', 'title'])
+            ->whereNull('parent_id')
+            ->get()
+            ->pluck('title', 'id');
+        return Admin::form(Category::class, function (Form $form) use ($parent_ids_opt) {
 
             $form->display('id', 'ID');
-            $form->display('parent_id', 'parent ID');
+            $form->select('parent_id', 'parent ID')->options($parent_ids_opt);
             $form->text('title');
             $form->text('description');
             $form->image('image_path');
